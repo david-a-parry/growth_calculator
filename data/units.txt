@@ -1,0 +1,3 @@
+British Growth Reference 1990, revised Sept 1996, sitting height added Feb 1998 Freeman JV et al, Arch Dis Child 1995;73:17-24 Cole TJ et al, Arch Dis Child 1995;73:25-29 Cole TJ et al, Stat Med 1998;17:407-429  Waist circumference McCarthy HD et al, Eur J Clin Nutr 2001;55:902-7  Percent body fat McCarthy HD et al, Int J Obes 2006;30:598-602	
+Height (HT, cm)						Weight (WT, kg)						Body Mass Index (BMI, kg/m2)						Head Circumference (HC, cm)
+
