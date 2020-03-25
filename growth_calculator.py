@@ -20,6 +20,7 @@ unit_converter = {'days': lambda x: x/365.25,
 
 
 def adjust_age(years, weeks_gestation, verbose=False):
+    ''' Adjust age in years by if weeks_gestation < 40.'''
     if weeks_gestation < 40:
         adjust = unit_converter['weeks'](40 - weeks_gestation)
         if verbose:
@@ -33,6 +34,52 @@ def calculate_zscore(measure, x, gender, age, weeks_gestation=40,
                      dataset='british_1990',
                      age_unit='years', return_nearest_age=False,
                      verbose=False):
+    '''
+        Calculate a Z-score for a single measurement. Returns Z-score
+        and optionally the nearest age in the reference dataset used for
+        the calculation.
+
+    Args:
+        measure:
+                type of measurement. Required. Must be one of the
+                following:
+                    'height' (in cm)
+                    'ofc' (in cm)
+                    'weight' (in kg)
+
+        x:      value for this measurement. Required.
+
+        gender: 'male' or 'female' Required.
+
+        age:    age at time of measurement. Required. Either in years or
+                using a unit specified by the 'age_unit' argument (see
+                below).
+
+        weeks_gestation:
+                Give the weeks gestation if the measurements should be
+                adjusted for gestation. Default=40.
+
+        dataset:
+                Which growth dataset to use. Either 'british_1990' or
+                'UK_WHO_preterm'. Default='british_1990'.
+
+        age_unit:
+                Unit for the provided age. Default='years'. Options are:
+                    'days'
+                    'weeks'
+                    'months'
+                    'years'
+
+        return_nearest_age:
+                If True the function will return 3 arguments, the
+                Z-score, the age used in the calculation (in years) and
+                the provided age (converted to years). Default=False.
+
+        verbose:
+                If True, print information about the calaulation to
+                STDOUT. Default=False.
+
+    '''
     age = unit_converter[age_unit](age)
     age = adjust_age(age, weeks_gestation, verbose=verbose)
     gender = gender.lower()
@@ -52,6 +99,43 @@ def calculate_zscore(measure, x, gender, age, weeks_gestation=40,
 
 def zscore_cohort(individuals, dataset='british_1990',
                   default_age_unit='years'):
+    '''
+        Calculate Z-scores for multiple measurements and individuals.
+        Returns a pandas dataframe.
+
+        Args:
+            individuals:
+                 an iterable of dicts, one per individual. The keys 'id',
+                 'gender' and 'age' must be present for each individual.
+
+                Optional keys are:
+                     'height' (in cm)
+                     'ofc' (in cm)
+                     'weight' (in kg)
+                     'gestation' (in weeks)
+                     'age_unit' (days, weeks, months or years [default])
+
+                Example: [dict(id=1, gender='male', gestation=35,
+                               age=9, age_unit='months', weight=3.00,
+                               ofc=38, height=55),
+                          dict(id=2, gender='female', age=10,
+                               age_unit='months', weight=5.00,
+                               ofc=42, height=64)]
+
+            dataset:
+                    Which growth dataset to use. Either 'british_1990' or
+                    'UK_WHO_preterm'. Default='british_1990'.
+
+            default_age_unit:
+                    Unit for the provided age for each individual where
+                    'age_unit' is not provided. Default='years'.
+                    Options are:
+                        'days'
+                        'weeks'
+                        'months'
+                        'years'
+
+    '''
     col_order = ['ID', 'weight', 'weight SD', 'ofc', 'ofc SD', 'height',
                  'height SD', 'Gender', 'Provided_Age',
                  'Provided_Age_Unit', 'Gestation', 'Age', 'Adjusted_age',
