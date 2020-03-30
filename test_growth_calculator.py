@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from math import isclose
 from nose.tools import assert_equal
 import pandas as pd
