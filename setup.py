@@ -1,21 +1,18 @@
 from setuptools import setup
 setup(
-    name="growth_calculator",
-    packages=[""],
+    name="human_growth_calculator",
+    packages=["human_growth_calculator"],
     version="0.1",
-    description="Calculate Z-scores for body measurements",
+    description="Calculate Z-scores for human body measurements",
     author="David A. Parry",
     author_email="david.parry@igmm.ed.ac.uk",
     url="https://git.ecdf.ed.ac.uk/dparry/growth_params",
-    download_url="https://git.ecdf.ed.ac.uk/dparry/growth_params/archive/0.1.tar.gz",
+    download_url="https://git.ecdf.ed.ac.uk/dparry/growth_params/-/archive/v0.1/growth_params-v0.1.tar.gz",
     test_suite='nose.collector',
-    tests_require=['nose'],
+    tests_require=['nose', 'pandas'],
     python_requires='>=3.5',
     license='MIT',
-    install_requires=[
-        'pandas',
-        'numpy',
-    ],
+    install_requires=['pandas', 'numpy'],
     include_package_data=True,
     classifiers=[
         "Programming Language :: Python :: 3",

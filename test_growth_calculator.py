@@ -3,7 +3,8 @@ from math import isclose
 from nose.tools import assert_equal
 import pandas as pd
 from pandas.testing import assert_frame_equal
-from growth_calculator import adjust_age, calculate_zscore, zscore_cohort
+from human_growth_calculator.growth_calculator import adjust_age, zscore_cohort
+from human_growth_calculator.growth_calculator import calculate_zscore
 
 
 def test_adjust_age():

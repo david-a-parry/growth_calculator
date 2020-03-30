@@ -6,7 +6,8 @@ from collections import defaultdict
 
 measurements = defaultdict(dict)
 for dataset in ['british_1990', 'UK_WHO_preterm']:
-    for csv in glob.glob("data/*{}.csv".format(dataset)):
+    datadir = os.path.join(os.path.dirname(__file__), "data")
+    for csv in glob.glob(datadir + os.path.sep + "*{}.csv".format(dataset)):
         msr = os.path.basename(csv).replace('_' + dataset + '.csv', '')
         measurements[dataset][msr] = pd.read_csv(csv, sep='\t')
         measurements[dataset][msr]['Gender'] = (
