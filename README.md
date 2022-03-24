@@ -7,12 +7,12 @@ weight, OFC).
 
 Requires python >=3.5
 
-    pip3 install git+https://git.ecdf.ed.ac.uk/dparry/growth_params.git --user
+    pip3 install git+https://github.com/david-a-parry/growth_calculator.git --user
 
 You may also choose to clone this repository and see the examples.ipynb
 notebook for example use cases.
 
-    git clone https://git.ecdf.ed.ac.uk/dparry/growth_params.git
+    git clone https://github.com/david-a-parry/growth_calculator.git
     cd growth_params
     jupyter-notebook
     
